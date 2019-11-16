@@ -1,6 +1,6 @@
+require 'pry'
 class Customer
-  attr_accessor :age
-  attr_reader :name
+  attr_accessor :name, :age
   @@all = []
   
   def initialize(name,age)
@@ -9,5 +9,20 @@ class Customer
     @@all << self
   end
   
-  def new_meal()
+  def new_meal(waiter, total, tip=0)
+    Meal.new(waiter, self, total, tip=0)
+  end
+  
+  def meals
+    Meal.all.select {|meal| meal.customer == self}
+  end
+  
+  def waiters
+    self.meals.map {|meal| meal.waiter }
+  end
+  
+  def self.all
+    @@all
+  end
+  
 end

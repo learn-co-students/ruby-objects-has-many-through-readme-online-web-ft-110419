@@ -1,4 +1,4 @@
-class Meals
+class Meal
  attr_accessor :waiter, :customer, :total, :tip
   @@all = []
  
@@ -10,5 +10,7 @@ class Meals
     @@all << self
   end
   
-  
+  def self.all
+    @@all
+  end
 end
