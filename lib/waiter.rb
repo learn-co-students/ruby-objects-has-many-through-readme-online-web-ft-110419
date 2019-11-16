@@ -13,13 +13,13 @@ class Waiter
   def self.all
     @@all
   end
-  
+
   def meals
     Meal.all.select {|meal| meal.waiter == self}
   end
   
   def new_meal(customer, total, tip=0)
-    Meal.new(self, customer, total, tip=0)
+    Meal.new(self, customer, total, tip)
   end
   
   def customers
@@ -27,11 +27,8 @@ class Waiter
   end
   
   def best_tipper
-    binding.pry
-    meals.max {|meal_a,meal_b| meal_a.tip <=> meal_b.tip}
+    meals.max {|meal_a,meal_b| meal_a.tip <=> meal_b.tip}.customer
   end
   
   
 end
-
-
